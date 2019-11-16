@@ -1,0 +1,27 @@
+{
+  "name": "poc_mongodb_lookup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "poc_mdb_lu.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "handlebars": "^4.5.2",
+    "hbs": "^4.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.10",
+    "shortid": "^2.2.15",
+    "validator": "^12.0.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.0.1",
+    "nodemon": "^1.19.4"
+  },
+  "scripts": {
+    "start-mongodb-server": "..\\..\\..\\..\\mongodb\\bin\\mongod.exe --dbpath=..\\..\\..\\..\\mongodb-data",
+    "start": "",
+    "dev": "env-cmd -f config/dev.env nodemon src/index.js"
+  },
+  "author": "Elisha",
+  "license": "ISC"
+}
