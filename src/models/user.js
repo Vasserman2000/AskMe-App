@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
-const User = mongoose.model('User', {
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
@@ -18,6 +18,7 @@ const User = mongoose.model('User', {
     },
     email: {
         type: String,
+        unique: true,
         required: true,
         trim: true,
         lowercase: true,
@@ -36,6 +37,25 @@ const User = mongoose.model('User', {
     tokens: {
         type: Array
     }
+}, {
+    timestamps: true
 })
 
-module.exports = User
+userSchema.statics.findByCredentials = async (email, password) => {
+
+    const user = await User.findOne({ email })
+    if (!user) {
+        throw new Error('Unable to log in!')
+    }
+
+    
+    if (user.password !== password) {
+        throw new Error('Either email or password doesn\'t match!')
+    }
+    
+    return user;
+}
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = { User }
