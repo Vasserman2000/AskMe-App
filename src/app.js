@@ -4,6 +4,7 @@ const express = require('express')
 const userRouter = require('../src/routes/user')
 const indexRouter = require('../src/routes/index')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 require('./db/mongoose')
 
 const app = express()
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(userRouter)
 app.use(indexRouter)
+app.use(cookieParser())
 
 
 

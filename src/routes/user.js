@@ -15,8 +15,16 @@ router.get('/users', (req, res) => {
 router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
-        console.log(user)
-        return res.send(user)
+        
+        const token = await user.generateAuthToken();
+
+        res.cookie('token', token, {
+            expires: new Date(Date.now() + 900000),
+            secure: false, // set to true if your using https
+            httpOnly: true,
+          });
+
+          return res.redirect('/start')
     } catch (e) {
         res.status(400).send(e.message)
     }

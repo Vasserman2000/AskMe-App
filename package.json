@@ -4,6 +4,7 @@
   "description": "",
   "main": "poc_mdb_lu.js",
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "handlebars": "^4.5.2",
     "hbs": "^4.0.6",
