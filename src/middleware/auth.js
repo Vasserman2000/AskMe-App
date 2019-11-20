@@ -11,6 +11,8 @@ const auth = async (req, res, next) => {
         //console.log('here')
         req.user = user;
 
+        //console.log(req.user)
+
         req.token = token;
 
         next();

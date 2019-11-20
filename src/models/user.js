@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const jwt = require('jsonwebtoken')
-//const Survey = require('../models/survey')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -39,11 +38,13 @@ const userSchema = new mongoose.Schema({
     tokens: {
         type: Array
     },
-    surveys: {
-        type: Array,
-        required: false,
-        ref: 'Survey'
-    }
+    surveys: [
+        {
+            type: String,
+            required: false,
+            ref: 'Survey'
+        }
+    ]
 }, {
     timestamps: true
 })
@@ -78,6 +79,6 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user;
 }
 
-const User = mongoose.model('User', userSchema)
+const User = new mongoose.model('User', userSchema)
 
 module.exports = User
