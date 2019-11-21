@@ -22,11 +22,11 @@ const surveySchema = new mongoose.Schema({
     timestamps: true
 })
 
-// surveySchema.virtual('users', {
-//     ref: 'User',
-//     localField: '_id',
-//     foreignField: 'surveys'
-// })
+surveySchema.virtual('users', {
+    ref: 'User',
+    localField: '_id',
+    foreignField: 'surveys'
+})
 
 
 const Survey = mongoose.model('Survey', surveySchema)

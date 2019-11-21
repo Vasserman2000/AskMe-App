@@ -46,8 +46,15 @@ router.get('/start', auth, async (req, res) => {
 
 router.get('/surveys/:id', auth, async (req, res) => {
     try {
-        await req.user.populate('surveys').execPopulate()
-        return res.send(req.user.surveys)
+
+        const survey = await Survey.findById(req.params.id)
+        //await survey.populate('users').execPopulate()
+        //console.log(survey.users[0].firstName)
+
+
+        //await req.user.populate('surveys').execPopulate()
+        //console.log(req.user)
+        return res.send(survey)
 
     } catch (error) {
         console.log(error)

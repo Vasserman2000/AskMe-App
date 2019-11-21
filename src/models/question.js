@@ -12,11 +12,24 @@ const questionSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    surveys: {
-        type: Array,
-        required: false,
-        ref: 'Survey'
-    }
+    questionType: {
+        type: String,
+        required: true
+    },
+    surveys: [
+        {
+            type: String,
+            required: false,
+            ref: 'Survey'
+        }
+    ],
+    answers: [
+        {
+            type: String,
+            reuqired: false,
+            ref: 'Answer'
+        }
+    ]
 }, {
     timestamps: true
 })
