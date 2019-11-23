@@ -5,4 +5,7 @@
     <a href="/about">About</a>
     <a href="/help">Help</a>
     <a href="/404">404</a>
+    {{#if this.isAdmin}}
+        <a href="/admin">Admin</a>
+    {{/if}}
 </header>

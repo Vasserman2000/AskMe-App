@@ -38,7 +38,7 @@ router.get('/start', auth, async (req, res) => {
             extendedSurveys.push(survey)
         })
 
-        res.render('start', { extendedSurveys })
+        res.render('start', { extendedSurveys, isAdmin: req.user.isAdmin })
     } catch (error) {
         res.status(400).send('Error: ' + error.message)
     }
