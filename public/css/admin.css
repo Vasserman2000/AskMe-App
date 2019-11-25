@@ -1,0 +1,12 @@
+.page{
+    display: none;
+    width: 100%;
+    min-height: 100%; /* allow for content off the bottom of the page */
+    position: fixed;  /* or absolute if the user needs to scroll for more content */
+    padding: 1rem 2rem;
+}
+
+.active{
+    display: block; 
+}
+
