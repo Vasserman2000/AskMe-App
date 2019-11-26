@@ -10,7 +10,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-primary" href="#">{{ this.name }}</a>
+    <a class="navbar-brand text-primary nav-link" data-target="me" href="#">{{ this.name }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,12 +45,25 @@
 </nav>
 
 <body>
+    <div class="page" id="me">
+        <h1>Hello, {{this.name}}</h1>
+        <button class="btn-danger" id="log-out-from-all">LOG OUT FROM ALL DEVICES</button>
+        <div class="row">
+            <span id="log-out-message"></span>
+        </div>
+    </div>
+
     <div class="page active" id="home">
         <h1>Dashboard</h1>
     </div>
 
     <div class="page" id="surveys">
         <h1>Surveys</h1>
+        <button class="btn-danger" id="add-new-survey">ADD NEW SURVEY</button>
+        <button class="btn-primary" id="get-all-surveys">GET ALL SURVEYS</button>
+        <div id="surveys">
+            
+        </div>
     </div>
 
     <div class="page" id="questions">
@@ -69,6 +82,7 @@
         <h1>Users</h1>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/admin.js"></script>
 </body>
 

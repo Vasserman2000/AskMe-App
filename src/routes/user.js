@@ -22,6 +22,7 @@ router.post('/users/login', async (req, res) => {
             expires: new Date(Date.now() + 900000),
             secure: false, // set to true if your using https
             httpOnly: true,
+            sameSite: 'None'
           });
 
           return res.redirect('/start')

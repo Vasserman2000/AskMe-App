@@ -21,9 +21,21 @@ const admin = {
     },
     poppin: () => {
         let hash = location.hash.replace('#' ,'');
-        document.querySelector('.active').classList.remove('active');
+        document.querySelector('.page.active').classList.remove('active');
         document.getElementById(hash).classList.add('active');
     }
 }
 
 document.addEventListener('DOMContentLoaded', admin.init)
+
+$('#get-all-surveys').click(() => {
+    $.get('/surveys', (data) => {
+        $('#surveys').append(data[0].title)
+    })
+})
+
+$('#log-out-from-all').click(() => {
+    $.get('admin/log-out-from-all', (data) => {
+        $('#log-out-message').append(data)
+    })
+})

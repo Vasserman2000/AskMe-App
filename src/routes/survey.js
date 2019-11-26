@@ -2,30 +2,23 @@ const express = require('express')
 const router = new express.Router()
 const jwt = require('jsonwebtoken')
 const auth = require('../middleware/auth')
+const isAdmin = require('../middleware/isAdmin')
 const Survey = require('../models/survey')
 const User = require('../models/user')
 
-// router.get('/surveys', async (req, res) => {
-//     try {
-//         const surveys = []
-//         surveys.push(new Survey({title: 'Coding Experience', isActive: true}))
-//         surveys.push(new Survey({title: 'Personal', isActive: true}))
+router.get('/surveys', auth, isAdmin, async (req, res) => {
+    try {
+        const surveys = await Survey.find({});
 
-//         console.log(surveys)
-
-//         surveys.forEach(async (survey, index) => {
-//             await survey.save()
-//         })
-
-//         return res.send(surveys);
-//     } catch (e) {
-//         console.log(e)
-//     }
-// })
+        return res.send(surveys);
+    } catch (e) {
+        console.log(e)
+    }
+})
 
 router.get('/start', auth, async (req, res) => {
     try {
-        
+
         //console.log(req.user.surveys)
         //console.log(req.cookies)
         //console.log(req.user)    
