@@ -13,7 +13,7 @@ const app = express()
 
 const publicDirectoryPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
-const partialsPath = path.join(__dirname, '../templates/partials');
+const partialsPath = path.join(__dirname, '../templates/views/partials');
 
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);

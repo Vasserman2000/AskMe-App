@@ -7,6 +7,7 @@
     {{!-- <link rel="stylesheet" href="./css/styles.css"> --}}
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/tabulator.css">
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,8 +39,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <a href='/start'><img src='./img/logo.png'></a>
         </form>
     </div>
 </nav>
@@ -48,9 +48,8 @@
     <div class="page" id="me">
         <h1>Hello, {{this.name}}</h1>
         <button class="btn-danger" id="log-out-from-all">LOG OUT FROM ALL DEVICES</button>
-        <div class="row">
-            <span id="log-out-message"></span>
-        </div>
+        <br>
+        <span id="log-out-message"></span>
     </div>
 
     <div class="page active" id="home">
@@ -59,10 +58,15 @@
 
     <div class="page" id="surveys">
         <h1>Surveys</h1>
-        <button class="btn-danger" id="add-new-survey">ADD NEW SURVEY</button>
-        <button class="btn-primary" id="get-all-surveys">GET ALL SURVEYS</button>
-        <div id="surveys">
-            
+        <div class="container">
+            <div>
+                <button class="btn-dark" id="add-new-survey">ADD NEW SURVEY</button>
+                <div id="new-survey"></div>
+            </div>
+            <div>
+                <button class="btn-success" id="get-all-surveys">GET ALL SURVEYS</button>
+                <div id="survey-table"></div>
+            </div>
         </div>
     </div>
 
@@ -82,6 +86,7 @@
         <h1>Users</h1>
     </div>
 
+    <script src="./js/tabulator.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/admin.js"></script>
 </body>
