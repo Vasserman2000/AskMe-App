@@ -24,7 +24,9 @@ const auth = async (req, res, next) => {
         next();
     } catch (e) {
         //res.status(401).send(e.message)
-        res.render('index')
+        //res.render('index')
+        req.user = null
+        next()
     }
 }
 

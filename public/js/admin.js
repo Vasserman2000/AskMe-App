@@ -39,6 +39,15 @@ $('#add-new-survey').click(() => {
     })
 })
 
+onNewSurveySubmit = function (e) {
+    console.log('hi')
+    return false
+}
+
+hideNewSurveyForm = function () {
+    $('#new-survey-form').hide()
+}
+
 $('#log-out-from-all').click(() => {
     $.get('admin/log-out-from-all', (data) => {
         $('#log-out-message').append(data)

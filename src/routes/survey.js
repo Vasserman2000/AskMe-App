@@ -22,6 +22,9 @@ router.get('/start', auth, async (req, res) => {
         //console.log(req.cookies)
         //console.log(req.user)    
 
+        if (!req.user) {
+            return res.redirect('/')
+        }
         const surveys = await Survey.find({ _id: { $in: req.user.surveys } })
         //console.log(surveys)
         var extendedSurveys = []
@@ -32,7 +35,7 @@ router.get('/start', auth, async (req, res) => {
 
         res.render('start', { extendedSurveys, isAdmin: req.user.isAdmin })
     } catch (error) {
-        res.status(400).send('Error: ' + error.message)
+        res.send('Error: ' + error.message)
     }
 })
 
@@ -52,6 +55,11 @@ router.get('/surveys/:id', auth, async (req, res) => {
         console.log(error)
         return res.status(400).send(error.message)
     }
+})
+
+router.post('/survey', auth, isAdmin, async (req, res) => {
+    const newSurvey = new Survey({...req.body || { isActive: false}})
+    return res.send(newSurvey)
 })
 
 module.exports = router

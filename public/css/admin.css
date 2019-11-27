@@ -10,3 +10,7 @@
     display: block; 
 }
 
+#new-survey-form {
+    border: solid 1px grey
+}
+
