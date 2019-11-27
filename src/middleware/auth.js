@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
         //console.log(decoded)
         const user = await User.findOne({'_id': decoded._id, 'tokens.token': token });
         if (!user) {
-            throw new Error ('Authentication failed')
+            throw new Error ('User authentication failed')
         }
         //console.log('here')
         req.user = res.locals.user = user;
@@ -23,7 +23,8 @@ const auth = async (req, res, next) => {
 
         next();
     } catch (e) {
-        res.status(401).redirect('/');
+        //res.status(401).send(e.message)
+        res.render('index')
     }
 }
 

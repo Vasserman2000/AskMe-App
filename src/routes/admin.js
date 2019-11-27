@@ -22,7 +22,7 @@ router.get('/admin', auth, isAdmin, async (req, res) => {
                                     isAdmin: req.user.isAdmin,
                                     name: `${req.user.firstName + ' ' + req.user.lastName}` })
     } catch (error) {
-        return res.status(401)//.send(error.message)
+        return res.status(401).send(error.message)
     }
 })
 

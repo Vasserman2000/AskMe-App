@@ -42,6 +42,9 @@ $('#add-new-survey').click(() => {
 $('#log-out-from-all').click(() => {
     $.get('admin/log-out-from-all', (data) => {
         $('#log-out-message').append(data)
+    }).fail((error) => {
+        $('#log-out-message').text('')
+        $('#log-out-message').append(error.statusText)
     })
 })
 

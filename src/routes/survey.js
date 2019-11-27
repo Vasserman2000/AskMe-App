@@ -18,7 +18,6 @@ router.get('/surveys', auth, isAdmin, async (req, res) => {
 
 router.get('/start', auth, async (req, res) => {
     try {
-
         //console.log(req.user.surveys)
         //console.log(req.cookies)
         //console.log(req.user)    
