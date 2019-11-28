@@ -23,17 +23,17 @@ const questionSchema = new mongoose.Schema({
             ref: 'Survey'
         }
     ],
-    answers: [
+    options: [
         {
             type: String,
             reuqired: false,
-            ref: 'Answer'
+            ref: 'Option'
         }
     ]
 }, {
     timestamps: true
 })
 
-const Question = new mongoose.Model('Question', questionSchema)
+const Question = new mongoose.model('Question', questionSchema)
 
 module.exports = Question

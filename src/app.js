@@ -5,6 +5,7 @@ const userRouter = require('../src/routes/user')
 const indexRouter = require('../src/routes/index')
 const surveyRouter = require('../src/routes/survey')
 const adminRouter = require('../src/routes/admin')
+const questionRouter = require('../src/routes/question')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 require('./db/mongoose')
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json())
 app.use(cookieParser())
-app.use([surveyRouter, adminRouter, indexRouter, userRouter])
+app.use([surveyRouter, adminRouter, indexRouter, userRouter, questionRouter])
 
 
 

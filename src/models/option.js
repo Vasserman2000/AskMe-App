@@ -17,6 +17,6 @@ const optionSchema = new mongoose.Schema({
 })
 
 
-const Option = new mongoose.Model('Option', optionSchema)
+const Option = new mongoose.model('Option', optionSchema)
 
 module.exports = Option

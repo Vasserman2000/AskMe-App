@@ -54,8 +54,8 @@ $('#log-out-from-all').click(() => {
     })
 })
 
-//Build Tabulator
-var table = new Tabulator("#survey-table", {
+//Build Survey Tabulator
+var surveysTable = new Tabulator("#survey-table", {
     height:"311px",
     layout:"fitColumns",
     placeholder:"No Data Set",
@@ -63,7 +63,21 @@ var table = new Tabulator("#survey-table", {
         {title:"_id", field:"_id", sorter:"string", width:200},
         {title:"Title", field:"title", sorter:"string"},
         {title:"isActive", field:"isActive", sorter:"string"},
-        {title:"CreatedA At", field:"createdAt", sorter:"string"},
+        {title:"Created At", field:"createdAt", sorter:"string"},
         {title:"Updated At", field:"updatedAt", sorter:"string"}
     ],
 }).setData(surveys)
+
+//Build Question Tabulator
+var questionsTable = new Tabulator('#question-table', {
+    height:"311px",
+    layout:"fitColumns",
+    placeholder:"No Data Set",
+    columns:[
+        {title:"_id", field:"_id", sorter:"string", width:200},
+        {title:"Title", field:"title", sorter:"string"},
+        {title:"isActive", field:"isActive", sorter:"string"},
+        {title:"Created At", field:"createdAt", sorter:"string"},
+        {title:"Updated At", field:"updatedAt", sorter:"string"}
+    ],
+}).setData(questions)
