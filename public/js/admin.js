@@ -28,9 +28,6 @@ const admin = {
 
 document.addEventListener('DOMContentLoaded', admin.init)
 
-$('#get-all-surveys').click(() => {
-    table.setData("/surveys");
-})
 
 $('#add-new-survey').click(() => {
     $.get('admin/test', (data) => {
@@ -69,4 +66,4 @@ var table = new Tabulator("#survey-table", {
         {title:"CreatedA At", field:"createdAt", sorter:"string"},
         {title:"Updated At", field:"updatedAt", sorter:"string"}
     ],
-});
+}).setData(surveys)

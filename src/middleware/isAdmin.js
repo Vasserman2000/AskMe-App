@@ -1,6 +1,6 @@
 module.exports = async (req, res, next) => {
     try {
-        console.log('Inside isAdmin middleware')
+        //console.log('Inside isAdmin middleware')
         if (req.user) {
             if (req.user.isAdmin) {
                 next()

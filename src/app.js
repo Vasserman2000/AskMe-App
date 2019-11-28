@@ -16,6 +16,9 @@ const viewsPath = path.join(__dirname, '../templates/views');
 const partialsPath = path.join(__dirname, '../templates/views/partials');
 
 app.set('view engine', 'hbs');
+hbs.registerHelper('toJSON', (object) => {
+    return JSON.stringify(object)
+})
 app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 
