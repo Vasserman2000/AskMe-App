@@ -14,7 +14,7 @@ const extendQuestionsForTabulator = (questions) => {
         extendedQuestions.push(Object.assign({}, question.toObject(), {surveysNames}))
         //console.log(extendedQuestions)
     })
-    console.log(extendedQuestions[0])
+    //console.log(extendedQuestions[0])
     return extendedQuestions
 }
 

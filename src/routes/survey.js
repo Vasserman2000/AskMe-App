@@ -58,8 +58,11 @@ router.get('/surveys/:id', auth, async (req, res) => {
 })
 
 router.post('/survey', auth, isAdmin, async (req, res) => {
+    //console.log(req.body)
     const newSurvey = new Survey({ ...req.body })
-    return res.send(newSurvey)
+    //console.log(newSurvey)
+    await newSurvey.save()
+    return res.send('success')
 })
 
 module.exports = router
