@@ -74,10 +74,13 @@ var questionsTable = new Tabulator('#question-table', {
     layout:"fitColumns",
     placeholder:"No Data Set",
     columns:[
-        {title:"_id", field:"_id", sorter:"string", width:200},
-        {title:"Title", field:"title", sorter:"string"},
-        {title:"isActive", field:"isActive", sorter:"string"},
-        {title:"Created At", field:"createdAt", sorter:"string"},
+        {title:"_id", field:"_id", sorter:"string"},
+        {title:"Text", field:"body", sorter:"string"},
+        {title:"Type", field:"questionType", sorter:"string"},
+        {title:"Surveys", field:"surveysNames"},
         {title:"Updated At", field:"updatedAt", sorter:"string"}
     ],
-}).setData(questions)
+}).setData(JSON.parse(questions))
+
+console.log(questions)
+

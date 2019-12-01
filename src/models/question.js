@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const shortId = require('shortid')
+const questionType = require('../../public/js/enums').questionType
 
 const questionSchema = new mongoose.Schema({
     _id: {
@@ -14,6 +15,7 @@ const questionSchema = new mongoose.Schema({
     },
     questionType: {
         type: String,
+        enum: [...questionType],
         required: true
     },
     surveys: [

@@ -58,7 +58,7 @@ router.get('/surveys/:id', auth, async (req, res) => {
 })
 
 router.post('/survey', auth, isAdmin, async (req, res) => {
-    const newSurvey = new Survey({...req.body || { isActive: false}})
+    const newSurvey = new Survey({ ...req.body })
     return res.send(newSurvey)
 })
 
