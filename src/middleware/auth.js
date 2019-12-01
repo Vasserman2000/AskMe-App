@@ -26,6 +26,7 @@ const auth = async (req, res, next) => {
         //res.status(401).send(e.message)
         //res.render('index')
         req.user = null
+        console.log('________user is null')
         next()
     }
 }

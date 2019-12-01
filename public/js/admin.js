@@ -79,7 +79,17 @@ surveysTable = new Tabulator("#survey-table", {
         { title: "isActive", field: "isActive", sorter: "string" },
         { title: "Created At", field: "createdAt", sorter: "string" },
         { title: "Updated At", field: "updatedAt", sorter: "string" },
-        { title: "delete", formatter: "buttonCross", align: "center", cellClick: function(e, cell) {alert("Printing row data for: " + cell.getRow().getData().title)}}
+        { title: "delete", formatter: "buttonCross", style: "cursor: none", align: "center", cellClick: (e, cell) => {
+            const id = cell.getRow().getData()._id
+            const title = cell.getRow().getData().title
+            $.ajax({
+                url: `/surveys/${id}`,
+                type: 'DELETE',
+                success: function(result) {
+                    alert(`Survey [${title}] has been deleted`)
+                }
+            });
+        }}
     ],
 })
 surveysTable.setData(surveys)
@@ -97,7 +107,7 @@ var questionsTable = new Tabulator('#question-table', {
         { title: "_id", field: "_id", sorter: "string" },
         { title: "Text", field: "body", sorter: "string" },
         { title: "Type", field: "questionType", sorter: "string" },
-        { title: "Surveys", field: "surveysNames" },
+        { title: "Surveys", field: "surveysNames", tooltip:true },
         { title: "Created At", field: "createdAt", sorter: "string" },
         { title: "Updated At", field: "updatedAt", sorter: "string" }
     ],

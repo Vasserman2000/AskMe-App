@@ -6,6 +6,7 @@ const isAdmin = require('../middleware/isAdmin')
 const Survey = require('../models/survey')
 const User = require('../models/user')
 
+// GET ALL SURVEYS
 router.get('/surveys', auth, isAdmin, async (req, res) => {
     try {
         const surveys = await Survey.find({});
@@ -39,6 +40,7 @@ router.get('/start', auth, async (req, res) => {
     }
 })
 
+// GET SURVEY BY ID
 router.get('/surveys/:id', auth, async (req, res) => {
     try {
 
@@ -57,12 +59,20 @@ router.get('/surveys/:id', auth, async (req, res) => {
     }
 })
 
+// CREATE NEW SURVEY
 router.post('/survey', auth, isAdmin, async (req, res) => {
     //console.log(req.body)
     const newSurvey = new Survey({ ...req.body })
     //console.log(newSurvey)
     await newSurvey.save()
     return res.send('success')
+})
+
+// DELETE SURVEY BY ID
+router.delete('/surveys/:id', auth, isAdmin, async (req, res) => {
+    const _id = req.params.id
+    await Survey.deleteOne({ _id })
+    res.status(202).send('deleted')
 })
 
 module.exports = router
