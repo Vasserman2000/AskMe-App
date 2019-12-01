@@ -1,16 +1,21 @@
-<form id="new-question-form" action="question" method="POST" enctype="application/json" onsubmit="return onNewQuestionSubmit()">
+<form id="new-question-form" action="question" method="POST" enctype="application/json">
   <div class="form-group col-3">
     <label for="survey-title">Question Body</label>
-    <input type="input" class="form-control" id="survey-title"  placeholder="Enter title" name="title">
+    <input type="input" class="form-control" id="question-body"  placeholder="Enter question" name="body">
   </div>
-  <div class="form-group col-3">
-  <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="customCheck" name="isActive" value="true">
-    <label class="custom-control-label" for="customCheck">Is this survey going to be active?</label>
+  <div class="form-group">
+    <label for="questionType">Question Type</label>
+    <select class="form-control" id="questionType" multiple="multiple">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
   </div>
-  </div>
+
   <div class="text-center">
-      <button type="submit" class="btn btn-success" id="submit-new-survey">Submit</button>
-      <button type="button" class="btn btn-dark" onclick="hideNewSurveyForm()" >Close</button>
+      <button type="submit" class="btn btn-success" id="submit-new-question">Submit</button>
+      <button type="button" class="btn btn-dark" onclick="hideNewQuestionForm()" >Close</button>
   </div>
 </form>

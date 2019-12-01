@@ -32,9 +32,16 @@ document.addEventListener('DOMContentLoaded', admin.init)
 
 
 $('#add-new-survey').click(() => {
-    $.get('admin/test', (data) => {
+    $.get('admin/testNewSurvey', (data) => {
         $('#new-survey form').remove()
         $('#new-survey').append(data)
+    })
+})
+
+$('#add-new-question').click(() => {
+    $.get('admin/testNewQuestion', (data) => {
+        $('#new-question form').remove()
+        $('#new-question').append(data)
     })
 })
 
@@ -107,7 +114,8 @@ var questionsTable = new Tabulator('#question-table', {
         { title: "_id", field: "_id", sorter: "string" },
         { title: "Text", field: "body", sorter: "string" },
         { title: "Type", field: "questionType", sorter: "string" },
-        { title: "Surveys", field: "surveysNames", tooltip:true },
+        { title: "Surveys", field: "surveysNames", tooltip: true },
+        { title: "Options", field: "optionsNames", tooltip: true },
         { title: "Created At", field: "createdAt", sorter: "string" },
         { title: "Updated At", field: "updatedAt", sorter: "string" }
     ],

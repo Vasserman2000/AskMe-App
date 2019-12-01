@@ -8,9 +8,20 @@ const Question = require('../models/question')
 const { extendQuestionsForTabulator } = require('../helpers/questionHelper')
 
 
-router.get('/admin/test', auth, async (req, res) => {
+router.get('/admin/testNewSurvey', auth, async (req, res) => {
     try {
         return res.render('partials/newSurveyForm', { 
+                                    title: 'Admin Dashboard',
+                                    isAdmin: req.user.isAdmin,
+                                    name: `${req.user.firstName + ' ' + req.user.lastName}` })
+    } catch (error) {
+        return res.status(401)//.send(error.message)
+    }
+})
+
+router.get('/admin/testNewQuestion', auth, async (req, res) => {
+    try {
+        return res.render('partials/newQuestionForm', { 
                                     title: 'Admin Dashboard',
                                     isAdmin: req.user.isAdmin,
                                     name: `${req.user.firstName + ' ' + req.user.lastName}` })
