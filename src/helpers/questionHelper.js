@@ -1,8 +1,9 @@
 const extendQuestionsForTabulator = (questions) => {
-    let surveysNames = ''
     let extendedQuestions = []
-    questions.forEach((question) => {
-        question.surveys.forEach((survey, index) => {
+    questions.forEach(function (question)  {
+        let surveysNames = ''
+
+        question.surveys.forEach(function(survey, index) {
 
             surveysNames += survey.title
 
@@ -12,9 +13,8 @@ const extendQuestionsForTabulator = (questions) => {
 
         })
         extendedQuestions.push(Object.assign({}, question.toObject(), {surveysNames}))
-        //console.log(extendedQuestions)
     })
-    //console.log(extendedQuestions[0])
+
     return extendedQuestions
 }
 

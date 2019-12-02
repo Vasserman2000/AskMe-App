@@ -46,14 +46,14 @@ $('#add-new-question').click(() => {
         $.each(JSON.parse(questionTypes), function (key, value) {
             $('#questionType')
                 .append($('<option></option>')
-                .attr("value", key)
+                .attr("value", value)
                 .text(value))
         })
         
         $.each(JSON.parse(surveysTitles), function (key, value) {
             $('#questionSurveys')
                 .append($('<option></option>')
-                .attr("value", key)
+                .attr("value", value)
                 .text(value))
         })
     })
@@ -137,5 +137,5 @@ var questionsTable = new Tabulator('#question-table', {
     ],
 }).setData(JSON.parse(questions))
 
-//console.log(questions)
+console.log(questions)
 

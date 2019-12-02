@@ -23,6 +23,8 @@ router.get('/questions', auth, isAdmin, async (req, res) => {
 router.post('/question', auth, isAdmin, async (req, res) => {
 
     const question = new Question({ ...req.body })
+    await question.save()
+    console.log(question)
 })
 
 module.exports = router

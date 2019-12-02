@@ -21,7 +21,8 @@
   "scripts": {
     "start-mongodb-server": "..\\..\\..\\..\\mongodb\\bin\\mongod.exe --dbpath=..\\..\\..\\..\\mongodb-data",
     "start": "",
-    "dev": "env-cmd -f config/dev.env nodemon src/index.js"
+    "dev": "env-cmd -f config/dev.env nodemon src/index.js",
+    "push": "git push origin master"
   },
   "author": "Elisha",
   "license": "ISC"
