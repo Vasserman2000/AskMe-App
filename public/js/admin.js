@@ -42,6 +42,20 @@ $('#add-new-question').click(() => {
     $.get('admin/testNewQuestion', (data) => {
         $('#new-question form').remove()
         $('#new-question').append(data)
+
+        $.each(JSON.parse(questionTypes), function (key, value) {
+            $('#questionType')
+                .append($('<option></option>')
+                .attr("value", key)
+                .text(value))
+        })
+        
+        $.each(JSON.parse(surveysTitles), function (key, value) {
+            $('#questionSurveys')
+                .append($('<option></option>')
+                .attr("value", key)
+                .text(value))
+        })
     })
 })
 
@@ -86,17 +100,19 @@ surveysTable = new Tabulator("#survey-table", {
         { title: "isActive", field: "isActive", sorter: "string" },
         { title: "Created At", field: "createdAt", sorter: "string" },
         { title: "Updated At", field: "updatedAt", sorter: "string" },
-        { title: "delete", formatter: "buttonCross", style: "cursor: none", align: "center", cellClick: (e, cell) => {
-            const id = cell.getRow().getData()._id
-            const title = cell.getRow().getData().title
-            $.ajax({
-                url: `/surveys/${id}`,
-                type: 'DELETE',
-                success: function(result) {
-                    alert(`Survey [${title}] has been deleted`)
-                }
-            });
-        }}
+        {
+            title: "delete", formatter: "buttonCross", align: "center", cellClick: (e, cell) => {
+                const id = cell.getRow().getData()._id
+                const title = cell.getRow().getData().title
+                $.ajax({
+                    url: `/surveys/${id}`,
+                    type: 'DELETE',
+                    success: function (result) {
+                        alert(`Survey [${title}] has been deleted`)
+                    }
+                });
+            }
+        }
     ],
 })
 surveysTable.setData(surveys)
@@ -121,5 +137,5 @@ var questionsTable = new Tabulator('#question-table', {
     ],
 }).setData(JSON.parse(questions))
 
-console.log(questions)
+//console.log(questions)
 

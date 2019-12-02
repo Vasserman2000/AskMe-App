@@ -1,21 +1,21 @@
 <form id="new-question-form" action="question" method="POST" enctype="application/json">
   <div class="form-group col-3">
     <label for="survey-title">Question Body</label>
-    <input type="input" class="form-control" id="question-body"  placeholder="Enter question" name="body">
+    <input type="input" class="form-control" id="question-body" placeholder="Enter question" name="body">
   </div>
-  <div class="form-group">
+  <div class="form-group col-3">
     <label for="questionType">Question Type</label>
-    <select class="form-control" id="questionType" multiple="multiple">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <select class="form-control" id="questionType">
+    </select>
+  </div>
+  <div class="form-group col-3">
+    <label for="questionSurveys">Question Surveys</label>
+    <select class="form-control" id="questionSurveys" multiple="multiple">
     </select>
   </div>
 
   <div class="text-center">
-      <button type="submit" class="btn btn-success" id="submit-new-question">Submit</button>
-      <button type="button" class="btn btn-dark" onclick="hideNewQuestionForm()" >Close</button>
+    <button type="submit" class="btn btn-success" id="submit-new-question">Submit</button>
+    <button type="button" class="btn btn-dark" onclick="hideNewQuestionForm()">Close</button>
   </div>
 </form>

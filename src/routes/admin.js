@@ -5,7 +5,9 @@ const isAdmin = require('../middleware/isAdmin')
 const User = require('../models/user')
 const Survey = require('../models/survey')
 const Question = require('../models/question')
+const questionTypes = require('../../public/js/enums').questionType
 const { extendQuestionsForTabulator } = require('../helpers/questionHelper')
+const { extractSurveyTitles } = require('../helpers/surveyHelper')
 
 
 router.get('/admin/testNewSurvey', auth, async (req, res) => {
@@ -33,15 +35,19 @@ router.get('/admin/testNewQuestion', auth, async (req, res) => {
 router.get('/admin', auth, isAdmin, async (req, res) => {
     try {
         const surveys = await Survey.find({})
+        const surveysTitles = extractSurveyTitles(surveys)
+        //console.log(surveysTitles)
         const questions = await Question.find({}).populate('surveys').exec()
         extendedQuestions = extendQuestionsForTabulator(questions)
         //console.log(questions)
-        
+        //console.log(questionTypes)
         return res.render('admin', { title: 'Admin Dashboard',
                                     isAdmin: req.user.isAdmin,
                                     name: `${req.user.firstName + ' ' + req.user.lastName}`,
                                     surveys,
-                                    questions: extendedQuestions })
+                                    questions: extendedQuestions,
+                                    questionTypes,
+                                    surveysTitles })
     } catch (error) {
         return res.status(401).send(error.message)
     }
