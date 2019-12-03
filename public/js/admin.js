@@ -1,4 +1,4 @@
-var surveysTable
+var surveysTable, questionsTable
 
 const admin = {
     pages: [],
@@ -128,11 +128,11 @@ surveysTable = new Tabulator("#survey-table", {
     columns: [
         { title: "_id", field: "_id", sorter: "string", width: 200 },
         { title: "Title", field: "title", sorter: "string" },
-        { title: "isActive", field: "isActive", sorter: "string" },
+        { title: "Is Active?", field: "isActive", sorter: "string", formatter: "tickCross", align: "center" },
         { title: "Created At", field: "createdAt", sorter: "string" },
         { title: "Updated At", field: "updatedAt", sorter: "string" },
         {
-            title: "delete", formatter: "buttonCross", align: "center", cellClick: (e, cell) => {
+            title: "Change Status", formatter: "buttonTick", field: "isActive", align: "center", cellClick: (e, cell) => {
                 const id = cell.getRow().getData()._id
                 const title = cell.getRow().getData().title
                 $.ajax({
@@ -153,20 +153,38 @@ $(document).on('click', '#refresh-survey-table', function (e) {
 })
 
 //Build Question Tabulator
-var questionsTable = new Tabulator('#question-table', {
+questionsTable = new Tabulator('#question-table', {
     height: "311px",
     layout: "fitColumns",
     placeholder: "No Data Set",
     columns: [
         { title: "_id", field: "_id", sorter: "string" },
-        { title: "Text", field: "body", sorter: "string" },
+        { title: "Text", field: "body", sorter: "string", tooltip: true },
         { title: "Type", field: "questionType", sorter: "string" },
         { title: "Surveys", field: "surveysNames", tooltip: true },
         { title: "Options", field: "optionsNames", tooltip: true },
         { title: "Created At", field: "createdAt", sorter: "string" },
-        { title: "Updated At", field: "updatedAt", sorter: "string" }
+        { title: "Updated At", field: "updatedAt", sorter: "string" },
+        {
+            title: "delete", formatter: "buttonCross", align: "center", cellClick: (e, cell) => {
+                const id = cell.getRow().getData()._id
+                const body = cell.getRow().getData().body
+                $.ajax({
+                    url: `/question/${id}`,
+                    type: 'DELETE',
+                    success: function (result) {
+                        alert(`Question [${body}] has been deleted`)
+                    }
+                });
+            }
+        }
     ],
-}).setData(JSON.parse(questions))
+})
+questionsTable.setData(JSON.parse(questions))
 
-console.log(questions)
+$(document).on('click', '#refresh-question-table', function (e) {
+    questionsTable.setData('/questions')
+})
+
+//console.log(questions)
 

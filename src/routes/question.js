@@ -25,9 +25,20 @@ router.post('/question', auth, isAdmin, async (req, res) => {
     const question = new Question({ ...req.body })
     console.log(question)
 
-    //await question.save()
+    await question.save()
     //console.log(req.body)
     return res.status(201).send('success')
+})
+
+router.delete('/question/:id', auth, isAdmin, async (req, res) => {
+    try {
+        const _id = req.params.id
+        await Question.deleteOne({ _id })
+        res.status(202).send('deleted')
+    
+    } catch (e) {
+
+    }
 })
 
 module.exports = router

@@ -36,6 +36,14 @@ const questionSchema = new mongoose.Schema({
     timestamps: true
 })
 
+questionSchema.pre('deleteOne', async function (next) {
+    const questionId = this.getQuery()._id
+    console.log('INSIDE PRE DELETEONE')
+    console.log(questionId)
+
+    next();
+});
+
 const Question = new mongoose.model('Question', questionSchema)
 
 module.exports = Question
