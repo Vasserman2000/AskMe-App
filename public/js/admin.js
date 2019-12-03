@@ -50,11 +50,11 @@ $('#add-new-question').click(() => {
                 .text(value))
         })
         
-        $.each(JSON.parse(surveysTitles), function (key, value) {
+        $.each(JSON.parse(surveys), function (key, value) {
             $('#questionSurveys')
                 .append($('<option></option>')
-                .attr("value", value)
-                .text(value))
+                .attr("value", value._id)
+                .text(value.title))
         })
     })
 })
@@ -74,10 +74,41 @@ $(document).on('submit', '#new-survey-form', function (e) {
     e.preventDefault()
 })
 
+$(document).on('submit', '#new-question-form', function (e) {
+
+    var formData = $('#new-question-form').serializeArray()
+    var options
+    //console.log(options)
+    var formData = $.grep(formData, function(o) { 
+        options = formData.find(o => o.name === 'options').value.split(',')
+        return o.name === "options"; 
+    }, true);
+
+    options.forEach((o) => {
+        formData.push({ "name": "options", "value": o })
+    })
+
+    $.ajax({
+        url: $(this).attr('action'),
+        type: $(this).attr('method'),
+        data: formData,
+        success: (res) => {
+            alert(res)
+            hideNewQuestionForm()
+        }
+    })
+
+    e.preventDefault()
+})
+
 
 
 hideNewSurveyForm = function () {
     $('#new-survey-form').hide()
+}
+
+hideNewQuestionForm = function () {
+    $('#new-question-form').hide()
 }
 
 $('#log-out-from-all').click(() => {

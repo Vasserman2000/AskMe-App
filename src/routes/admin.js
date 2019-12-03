@@ -39,8 +39,8 @@ router.get('/admin', auth, isAdmin, async (req, res) => {
         //console.log(surveysTitles)
         const questions = await Question.find({}).populate('surveys').exec()
         extendedQuestions = extendQuestionsForTabulator(questions)
-        console.log(questions)
-        console.log(extendedQuestions)
+        //console.log(questions)
+        //console.log(extendedQuestions)
         return res.render('admin', { title: 'Admin Dashboard',
                                     isAdmin: req.user.isAdmin,
                                     name: `${req.user.firstName + ' ' + req.user.lastName}`,
